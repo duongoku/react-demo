@@ -108,13 +108,16 @@ class Game extends React.Component {
         const temp_squares = temp_history[this.state.step].squares.slice();
         const winner = this.checkEndGame(temp_squares);
 
-        const moves = temp_history.map((step, move) => {
-            const desc = move ? ('Go to move #' + move) : ('Go to game start');
+        const moves = temp_history.map((squares, move) => {
+            let desc = move ? ('Go to move #' + move) : ('Go to game start');
             const pos = '('
                 + (((move % 2) === 0) ? 'O' : 'X')
-                + ', ' + step.posY
-                + ', '+ step.posX
+                + ', ' + squares.posY
+                + ', '+ squares.posX
             + ')';
+            if(move === this.state.step) {
+                desc = (<b>{desc}</b>);
+            }
             return (<li key={move}>
                 <button onClick={() => this.jumpTo(move)}>{desc}</button>
                 {(move === 0) ? '(X/O, x, y)' : pos}
