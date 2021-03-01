@@ -117,8 +117,7 @@ class Game extends React.Component {
         let status;
 
         if(winner) {
-            // status = 'Winner is ' + winner;
-            status = 'DarthReaver loses';
+            status = 'Winner is ' + winner;
         } else {
             status = 'Next play is ' + (this.state.isX ? 'X' : 'O');
         }
